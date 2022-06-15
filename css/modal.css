@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* cta es el boton */
+.cta {
+    margin: auto; /* como tenemos flexbox se va centrar vertical y horizontalmente */
+    background-color: royalblue;
+    color: #fff;
+    text-decoration: none;
+    padding: 1.2em 3em;
+    border-radius: .4em;
+}
+
+/* ahora modificaremos el modal, porque queremos que salga del flujo (que se deje de ver en la página) */
+
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* dandole todas esta posiciones "top,bottom,left,right" hacemos que su ancho y alto ocupe el 100% */
+    background-color: #333;
+    display: flex;
+    /* le damos display flex, para que su hijo madal__container pueda ser centrado hacia los lados con el "margin: auto" */
+
+    /* ANIMCACION CON CUSTOM PROPERTIES */
+    --opacity: 0;
+    --pointer: none;
+
+    opacity: var(--opacity); /* el modal sigue solo que lo hicimos transparente y no se ve, por eso no se puede apretar el boton */
+    pointer-events: var(--pointer); 
+    /* con esto estamos haciendo que el modal no sea reconocido por el puntero/cursor del mouse, por ende ahora si podemos hacer click al botón */
+    transition: opacity .5s; /* agregamos una transition que afecte a la opacidad  */
+}
+
+.modal:target {
+    /* cuando modal tenga la pseudoclase target se aplicaran los siguientes cambios, (la tendra cuando hagamos click en el boton) */
+    --opacity: 1;
+    --pointer: unset;
+}
+
+/* contenedor del modal */
+.modal__container  {
+    margin: auto;
+    background-color: #fff;
+    width: 90%; /* para que tenga un ancho del 90% */
+    max-width: 600px; /* que tenga un ancho maximo de 600px */
+    max-height: 90%;
+    overflow-y: auto;
+    text-align: center;
+    padding: 2.5em 1.5em;
+    border-radius: 1em;
+}
+
+.modal:target .modal__container {
+    /* explicación: cuando modal este en la clase target (es decir cuando se esta mostrando) se le aplicaran los siguientes cambios */
+    animation: show 1s .5s backwards; 
+    /* el .5s backwards es para que tenga los estilos del 0% por esos .5s */
+}
+
+@keyframes show {
+    0% {
+        transform: translateY(-150vh); /* esto hara que el elemento empiece mucho mas arriba de lo visible del navegador */
+    }
+
+    /* 100% {
+        transform: translateY(0) 
+    } 
+    podria hacerlo de la manera en que se ve para que termine en su posiciön original, pero si omitimos esto, es decir si omitimos el 100% en un key frame su 100% se toma como su valor original, que por defecto es un transform: translateY(0); */
+}
+
+/* contenedor de la ilustración */
+.modal__picture {
+    width: 90%; 
+    margin: 0 auto; /* para centra horizontalmente */
+    max-width: 400px; /* el width sera siempre de 90% siempre y cuando no sea mayor a 400px */
+    margin-bottom: 2em;
+}
+
+/* explicación: cuando modal este en target, su hijo modal picture que es el contenedor de la ilustración, tenga o sufra los siguientes cambios */
+.modal:target .modal__picture {
+    animation: scale .5s 1.5s backwards;  /* la animacion durara .5s, y espera de delay 1.5s (elegimos 1.5s porque es lo que tarda en completarse la animación show)*/
+    /* backwards se usa para que conserve sus propiedades del 0% en este caso seria un scale(0) MIRA EL KEYFRAME */
+}
+
+/* ANIMACION (que la imagen desaparezca) */
+@keyframes scale {
+    0% {
+        transform: scale(0);
+    }
+}
+
+/* ilustración del modal */
+.modal__img {
+    width: 100%;
+    display: block;
+}
+
+/* titulo del modal */
+.modal__title {
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+/* titulo bold modal */
+.modal__title--bold {
+    font-weight: 700;
+}
+
+/* parrafo modal */
+.modal__paragraph {
+    margin-top: 1em; /* para separar al titulo del parrafo  */
+    margin-bottom: 1em; 
+    line-height: 1.5; /* line-height de 1.5 para que sea mas alto el tamaño de linea */
+}
+
+/* boron */
+.modal__close {
+    display:inline-block;  /* le ponemos este display inline-block porque sino no ablica el margin-bottom de modal paragraph y si se lo sacamos se sobre pone */
+    border: 1px solid ; 
+    /* no tiene color porque toma por defecto el "color: #333;"   */
+    padding: 1em 2em;
+    text-decoration: none;
+    font-weight: 700;
+    color: #333;
+    border-radius: .4em;
+}
+
+@media (max-width: 600px) {
+    .modal__title {
+        font-size: 1.7rem;
+    }
+}

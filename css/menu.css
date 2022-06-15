@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EAEBEF;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* el nav no va a ser responsive, pero nosotros podemos hacer por nuestra cuenta */
+.nav {
+    width: 300px;
+}
+
+.nav__link {
+    /* para modificar los enlaces */
+    color: #303440;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+}
+
+.nav__link--inside {
+    border-radius: 6px;
+    padding-left: 20px;
+    text-align: left; /* para mandar a los enlaces que estan dentro del sub-menu a la izquierda */
+}
+
+.nav__link--inside:hover {
+    /* se veran los cambios cuando pasemos el mouse al elemento nav__link--inside (que son los enlaces que estan en el submenu) */
+    background: #F6F8FA;
+}
+
+.list {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+    background: #fff;
+}
+
+.list__item  {
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.list__item--click {
+    cursor: pointer; 
+    /* para que cambiel el cursor cuando lo pasemos por el menu */
+}
+
+.list__button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    margin: 0 auto;  /* para centrar horizontalmente el contenedor de los iconos y los enlaces */
+}
+
+.arrow .list__arrow {
+    /* la logica aqui seria que cuando el elemento list__button--click tenga la clse arrow, tenga o sufra los siguientes cambios */
+    transform: rotate(90deg);
+}
+
+.list__arrow {
+    margin-left: auto; /* para pasar hacia la derecha el icono de arrow.svg -ES UN TRUCO DE FLEXBOX- */
+    transition: trasform .3s; /* esta transition se lo dimos, lugo de agregar la propiedad transform rotate (90deg) */
+    /* gracias a estos cambios con el ".arrow .list__arrow" y ".list__arrow" la flecha rota hacia abajo cuando hacemos click (esto acompañado de javascript)  */
+}
+
+.list__show {
+    /* es el elemento que se va a mostrar y desaparecer */
+    width: 80%;
+    margin-left: auto; /* con esto se manda el contenedor hacia la derecha */
+    border-left: 2px solid #303440;
+    list-style: none;
+    transition: height .4s;
+    height: 0;  /* es para que el height no exista, pero si lo usamos sin antes poner el overflow hiden a la clase list__item, entonces se rompe. Te invito a inspeccionar y ver que pasa */
+
+}

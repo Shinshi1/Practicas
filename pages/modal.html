@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal CSS</title>
+    <link rel="stylesheet" href="../css/modal.css">
+</head>
+<body>
+    
+    <header id="header" class="header"> <!-- creamos la etiqueta header para definir la parte principal de nuestra página -->
+        <a href="#modal" class="cta">Dame click</a> <!-- cuando alguien de click a este elemento quiero que referencia al elemento con el id modal -->
+    </header>
+
+    <section id="modal" class="modal">
+        <div class="modal__container"> <!-- moldal__container sera el contenedor de todo el contenido modal, valga la redundancia -->
+            <figure class="modal__picture"> <!-- dentro de la etiqueta figure ira una imagen -->
+                <img src="../img/ilustration2.svg" class="modal__img" alt="Ilustración"> <!-- aquí ira una ilustración -->
+            </figure>
+
+            <h2 class="modal__title">¡Good Job!
+                <span class="modal__title modal__title--bold">Gabi</span> <!-- esto es para que se vea en negrita -->
+            </h2>
+
+            <p class="modal__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, nesciunt! Iure sequi odit natus nihil alias voluptatum numquam nemo totam!</p> <!-- parrafo de modal -->
+
+            <a href="#header" class="modal__close">Estoy de acuerdo</a> <!-- este elemento cerrará el modal, asi que vamo a referenciar este elemento con el id #header -->
+        </div>
+    </section>
+
+</body>
+</html>

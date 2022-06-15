@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/menu.css">
+    <title>MENU DESPLEGABLE CSS</title>
+</head>
+<body>
+    <nav class="nav">
+        <ul class="list">
+
+            <li class="list__item">
+                <div class="list__button">
+                    <img src="../assets/home.svg" class="list__img" alt="botón de menu">
+                    <a href="#" class="nav__link">Inicio</a>
+                </div>
+            </li>
+
+            <li class="list__item list__item--click">
+                <div class="list__button list__button--click"> <!-- aquí hay otro list__button, porque en este caso habra un submenu que se despliegue -->
+                    <img src="../assets/docs.svg" class="list__img" alt="boton documentos">
+                    <a href="#" class="nav__link">Servicios</a>
+                    <img src="../assets/arrow.svg" class="list__arrow" alt="botón flecha"> <!-- la flecha se usa para que todos los elementos que la tengan, tendran dentro un menu, esto hara que el menu tenga submenus-->
+                </div>
+
+                <ul class="list__show">
+                    <li class="list__inside">
+                        <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                    </li>
+                    <li class="list__inside">
+                        <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                    </li>
+                    <li class="list__inside">
+                        <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="list__item">
+                <div class="list__button">
+                    <img src="../assets/stats.svg" class="list__img" alt="botón de Estadisticas">
+                    <a href="#" class="nav__link">Estadisticas</a>
+                </div>
+            </li>
+
+            <li class="list__item list__item--click">
+                <div class="list__button list__button--click">
+                    <img src="../assets/bell.svg" class="list__img" alt="boton documentos">
+                    <a href="#" class="nav__link">Notificaciones</a>
+                    <img src="../assets/arrow.svg" class="list__arrow" alt="botón flecha">
+                </div>
+
+                <ul class="list__show">
+                    <li class="list__inside">
+                        <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                    </li>
+                    <li class="list__inside">
+                        <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                    </li>
+                    <li class="list__inside">
+                        <a href="#" class="nav__link nav__link--inside">Estoy dentro</a>
+                    </li>
+
+                    <li class="list__item">
+                        <div class="list__button">
+                            <img src="../assets/message.svg" class="list__img" alt="botón de Estadisticas">
+                            <a href="#" class="nav__link">Contacto</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </li>
+            
+
+
+            
+            
+        </ul>
+    </nav>
+
+
+
+    <script src="../scripts/menu.js"></script>
+</body>
+</html>

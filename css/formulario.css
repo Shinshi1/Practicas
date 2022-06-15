@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e5e5f7;
+    background-image: radial-gradient(#009975 0.5px, transparent 0.5px), radial-gradient(#009975 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    display: flex;
+    min-height: 100vh;
+}
+
+.form {
+    background-color: #fff;
+    margin: auto; /* Esto centra vertical y horizontalmente al formulario gracias a FLEXBOX(display:flex) */
+    width: 90%;
+    max-width: 400px; /* Esto hara que ocupe el 90%, pero que este 90% no sea mayor a 400px */
+    padding: 4.5em 3em;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%); /* Esta es una nueva manera de agregar colores en css, sin comas y para agregar una transparencia se pone una "/" y el porcentaje de tranparencia */
+    text-align: center; /* esto es para centrar a todos los elemento del formulario */
+    
+}
+
+.form__title {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+}
+
+.form__paragraph {
+    font-weight: 300;
+}
+
+.form__link {
+    font-weight: 400;
+    color: #000;
+}
+
+.form__container {
+    margin-top: 3em;
+    display: grid;
+    gap: 2.5em;
+}
+
+.form__group {
+    position: relative;
+    --color: #5757577e; /* es un "custom color" una variable w3 schools tiene info, facil de entender */
+}
+
+.form__input {
+    width: 100%;
+    background: none;
+    color: #706e6e;
+    padding: .6em .3em;
+    border: none;
+    outline: none; /* quita el border que aparce cuando hacemos click en el input */
+    border-bottom: 1px solid var(--color); /* "var(--nombredevariable)" es la forma de usar la variable */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* esto para que el color de la letra se muestre mas oscuro cuando no este el place holder */
+.form__input:not(:placeholder-shown) {
+    color: #4d4646;
+}
+
+/* Para subir los labels haremos uso de la pseudo clase focus y del selector adyacente usando "+", esto hara aplicarse los primeras condiciones "form__inputo:focus" se aplicaran los cambios sobre "form__label". Un problema surge, cuando dejamos de hacer focus en el input y es que el label toma su lugar original y no se ve para nada estetico, por eso tambien usamos "form__input:not(:placeholder-shown)" la logica seria esta, cuando el place holder no se muestre quiero que se apliquen los cambios en el "form__label" --mas info en el min 11:50 del video(al la fecha que haces esto entendiste la explicación del chico)-- */
+
+.form__input:focus + .form__label,
+.form__input:not(:placeholder-shown) + .form__label {
+    transform: translateY(-12px) scale(.7);
+    transform-origin: left top; /* transform-origin se usa para que el label se pegue a la izquierda arriba */
+    color: #3866f2;
+}
+
+.form__label {
+    color: var(--color);
+    cursor: pointer; /* cambia el cursor del mause en la manito con el dedo indice */
+    position: absolute;
+    top: 0;
+    left: 5px;
+    transform: translateX(10px); /* Esto bajara más los labels */
+    transition: .5s, color .3s;
+}
+
+.form__submit {
+    background-color: #6066f2;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    padding: .8em 0;
+    border: none;
+    border-radius: .5em;
+}
+
+/* linea del input */
+.form__line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #3866f2;
+    transform: scale(0); /* para ocultar la linea */
+    transform: left bottom; /* para que el efecto empieze a la izquierda abajo */
+    transition: transform .4s; /* para que la pripiedad transform tarde .4s en hacer lo que hace */
+}
+
+/* la logica aquí es que cuando hagamos focus en un input o cuando placeholder no se muestre queremos que su hermano form__line se vea afectado, esto no sera con el selector de hermanos adyacentes (+) sino con la virguilla (~) de la manera que se ve a continuación, que es el selector de hermanos */
+.form__input:focus ~ .form__line,
+.form__input:not(:placeholder-shown) ~ .form__line {
+    transform: scale(1);   /* para que se muestre la linea */
+}
+
+/* ACLARACION!! gracias a ponerle a la clase form un max-width de 400px y un width de 900px permite que el formulario sea adaptable es decir responsive*/
+@media (max-width:425px) {
+    .form__title{
+        font-size: 1.8rem;
+    }
+}
