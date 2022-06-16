@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../css/menu-animado.css">
     <title>Menú animado CSS</title>
 </head>
+
 <body>
 
     <nav class="nav">
@@ -14,12 +16,22 @@
 
             <h1 class="nav__logo">GabiHE.</h1>
 
-            <label for="" class="nav__label">
-                <img src="../assets/menu.svg" alt="Icono de menu">
+            <!-- icono de menu inicio -->
+            <label for="menu" class="nav__label">
+                <img src="../assets/menu.svg" alt="Icono de menu" class="nav__img">
             </label>
-            <input type="checkbox" id="menu">
+            <input type="checkbox" id="menu" class="nav__input">
+            <!-- icono de menu fin -->
+            <!-- EXPLICACION: cuando activemos o toquemos el icono el estado checked(es una pseudoclase) se activara, y a partir de eso cambiaremos los estilos del menu -->
+
+            <div class="nav__menu">
+                <a href="#" class="nav__item">Inicio</a>
+                <a href="#" class="nav__item">Acerca de</a>
+                <a href="#" class="nav__item">Contacto</a>
+            </div>
         </div>
     </nav>
 
 </body>
+
 </html>

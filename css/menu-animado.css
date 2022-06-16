@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav {
+    background: #293241;
+    height: 80px;
+    color: #fff; /* con esto le decimos que todos los elementos que esten dentro del nav tengan un color blanco */
+}
+
+
+/* conatenedor de enlaces y logo */
+
+.nav__container {
+    display: flex; /* display: flex para que ponga los elementos en una misma linea */
+    height: 100%;
+    width: 90%;
+    margin: 0 auto; /* margin: 0 auto; para centrar el contenido */
+    justify-content: space-between; /* para poner los elementos hacia las esquinas */
+    align-items: center; /* para centrarlo verticalmente */
+}
+
+/* logo */
+.nav__logo {
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+/* contenedor de los enlaces */
+.nav__menu {
+    display: grid;  /* solo asi se pondrian uno debajo del otro */
+    grid-auto-flow: column; /* con esto se ponen uno al lado del otro */
+    gap: 3em; /* con esto se les da un espaciado de 3 em */
+}
+
+/* enlaces */
+.nav__item {
+    color: #fff;
+    text-decoration: none;
+    /* variable para que desaparezca el efecto */
+    --clyppy: polygon(0 0, 0 0, 0 100%, 0% 100%);
+}
+
+/* para crear un efecto en los enlaces, cuando pasemos el mouse se creara un border*/
+.nav__item::after {
+    content: ""; /* asi se le da un contenido vacío */
+    display: block;
+    background: #fff;
+    width: 100%;
+    margin-top: 3px; /* para que se separe del elemento */
+    /* hasta aquí no se veria nada porque le falta un height */
+    height: 3px;
+
+    /* ahora como haremos que desaparezca este efecto? Bueno, lo haremos usando clip-path (lo haremos utilizando un generador de clip-path llamado "clippy css").
+    Usaremos la figura de un trapezoide, en donde pondremos los 4 puntos del poligono en la esquina superior izquierda y los otros dos en la esquina inferior izquierda, creando asi un recorte invisible (esto hara que desaparezca el elemento) */
+    clip-path: var(--clyppy);
+    transition: clip-path .3s;
+}
+
+/* Con esto ya el efecto desaparecio pero ahora queremos que se vea, con el mismo generador esta vez moveremos 4 puntos del poligono para que se vea completamente el recorte. */
+.nav__item:hover {
+    /* camabiamos el valor de la variable con el valor del recorte completo que hicimos en clip-path */
+    --clyppy: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+
+.nav__input:checked + .nav__menu {
+    /* cuando el input con la clase ".nav__input este con la pseudoclase :checked" quiero que su hermano adyacente que es .nav__menu sufra los siguientes cambios */
+    background: tomato;
+}
+
+/* label e input */
+.nav__label, .nav__input {
+    /* como momentaneamente no necesitamos el label(icono de menu) y el input los eliminamos con display:none */
+    display: none;
+}
+
+/* ----------- media query ------------ */
+@media (max-width: 700px) {
+    /* 2 ACLARACIONES 
+    1. Recorda que cuando tocamos el icono de menu, va a aparecer el menu. Y que cuando hagas click en ese icono el input checker pasa a la pseudo clase checker, pero para que esto pase debes tener el label con for que referencie a menu ' for="menu" ' y "menu debe ser el ide del input <input id="menu"> "
+    2. Input debe ser el hermano adyacente de el elemento <div class="nav__menu">... </div> (debe estar literalmente antes de ese elemento) de no ser así no funcionara, debe ser exactamente el hermano adyacente (es decir, despues de input debe seguir este elemento <div class="nav__menu">... </div>). */
+
+    .nav__label {
+        display: block; /* display block para que se muestre */
+        cursor: pointer; /* para que aparezca el cursor cuando pasamos el mouse por ese elemento */
+    }
+
+    .nav__menu {
+        position: fixed; /* para sacarlo del flujo */
+        top: 80px;
+        bottom: 0;
+        /* el top:80px; y el bottom:0; es para que a partir de los 80px ocupe todo el alto */
+        background: #f08080;
+        width: 100%;
+        left: 0;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+
+        /* con esto desparecemos el menu, haciendo un recorte invisible con la propiedad clip-path(no ayudamos de clippy css) */
+        clip-path: circle(0 at center);
+        transition: clip-path 1s ease-in-out;
+    }
+
+    .nav__input:checked + .nav__menu {
+        /* explicacion: cuando el input este en pseudoclase checked, es decir cuando presionemos el boton/icono de menu su hermano adyacente, esto es, el elemento que tiene la clase .nav__menu sufrira los siguiente cambios.
+        NO OLVIDAR que esto ocurre también gracias el selector de hermano adyacente que es el signo de "+" */
+        clip-path: circle(100% at center);
+    }
+
+    /* RE-ACLARACION: Para que esto pase debes tener el label con for que referencie a menu ' for="menu" ' y "menu debe ser el id del input como se ve a continuacion <input id="menu"> ".
+    Una cez que hayas hecho click en el icono se activara la pseudoclase checked del input-checkbox, lo que nos permite lograr que se vizualise el menu, y gracias a la propiedad clip-path que lo haga de forma circular, y a la propiedad transition: para que tarde cierto tiempo y nuestro ojo lo pueda reconocer */
+
+    
+}
